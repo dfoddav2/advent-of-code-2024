@@ -1,3 +1,5 @@
+#![allow(dead_code)]
+
 pub fn run() {
     // Step 1: Read the input file
     let input =
@@ -18,18 +20,15 @@ pub fn run() {
         }
     }
 
-    // Step 3: Sort the two vectors
-    left_nums.sort();
-    right_nums.sort();
-    // println!("{:?}", left_nums);
-
-    // Step 4: Iterate through the length of the vectors
-    let mut total_diff = 0;
-    for i in 0..left_nums.len() {
-        let diff = (left_nums[i] - right_nums[i]).abs();
-        total_diff += diff;
+    // Step 3: Get similiarity score
+    let mut similiarity_score = 0;
+    for left_num in left_nums {
+        let matches = right_nums.iter().filter(|&x| x == &left_num).count() as i32;
+        if matches > 0 {
+            similiarity_score += left_num * matches;
+        }
     }
-
-    // Step 5: Print result
-    println!("{}", total_diff);
+    
+    // Step 4: Print result
+    println!("{}", similiarity_score);
 }

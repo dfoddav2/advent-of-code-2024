@@ -1,3 +1,5 @@
+#![allow(dead_code)]
+
 pub fn run() {
     // Step 1: Read the input file
     let input =
